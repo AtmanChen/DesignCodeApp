@@ -9,7 +9,7 @@
 import UIKit
 import AVKit
 
-class ViewController: UIViewController {
+class HomeViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var deviceImageView: UIImageView!
     @IBOutlet weak var playVisualEffectView: UIVisualEffectView!
@@ -46,6 +46,7 @@ class ViewController: UIViewController {
         }
         addBlurStatusBar()
         setStatusBarBackgroundColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.5))
+		navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -117,7 +118,7 @@ class ViewController: UIViewController {
 	}
 }
 
-extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
 	
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		return sections.count
@@ -136,9 +137,11 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     }
 }
 
-extension ViewController: UIScrollViewDelegate {
+extension HomeViewController: UIScrollViewDelegate {
 	func scrollViewDidScroll(_ scrollView: UIScrollView) {
 		let offsetY = scrollView.contentOffset.y
+		let navigationBarIsHidden = offsetY <= 0
+		navigationController?.setNavigationBarHidden(navigationBarIsHidden, animated: true)
 		if offsetY < 0 {
 			heroView.transform = CGAffineTransform(translationX: 0, y: offsetY)
 			playVisualEffectView.transform = CGAffineTransform(translationX: 0, y: -offsetY/3)
