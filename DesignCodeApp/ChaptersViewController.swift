@@ -10,13 +10,13 @@ import UIKit
 
 class ChaptersViewController: UIViewController {
 
-    @IBOutlet weak var chapter1CollectionView: UICollectionView!
+    @IBOutlet weak var chapterCollectionView: UICollectionView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        chapter1CollectionView.delegate = self
-        chapter1CollectionView.dataSource = self
+        chapterCollectionView.delegate = self
+        chapterCollectionView.dataSource = self
     }
 }
 
