@@ -14,10 +14,13 @@ class SectionViewController: UIViewController {
     @IBOutlet weak var coverImageView: UIImageView!
     @IBOutlet weak var progressLabel: UILabel!
     @IBOutlet weak var bodyLabel: UILabel!
-    var section: [String: String]!
+	@IBOutlet weak var scrollView: UIScrollView!
+	var section: [String: String]!
     var sections: [[String: String]]!
     var indexPath: IndexPath!
-    
+	@IBOutlet weak var subHeadVisualEffectView: UIVisualEffectView!
+	@IBOutlet weak var closeVisualEffectView: UIVisualEffectView!
+	
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,7 +30,10 @@ class SectionViewController: UIViewController {
         coverImageView.image = UIImage(named: section["image"]!)
         progressLabel.text = "\(indexPath.row+1) / \(sections.count)"
     }
-    
+	@IBAction func closeButtonTapped(_ sender: UIButton) {
+		dismiss(animated: true)
+	}
+	
     override var prefersStatusBarHidden: Bool {
         return true
     }
